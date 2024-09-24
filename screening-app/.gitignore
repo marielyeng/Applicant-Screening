@@ -34,3 +34,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Node.js and Next.js
+/frontend/node_modules/
+/frontend/.next/
+/frontend/package-lock.json
+/frontend/.env
+
+# Python
+/backend/venv/
+/backend/__pycache__/
+/backend/*.pyc
+/backend/.env
