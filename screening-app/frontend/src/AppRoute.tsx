@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Router } from "@remix-run/router";
-import Home from "./app/page";
+import { Home } from "./pages/Home";
 
 const router: Router = createBrowserRouter([
     {
