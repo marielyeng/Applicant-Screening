@@ -5,12 +5,13 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Image from 'react-bootstrap/Image';
 
 export const NavBar: React.FC = () => {
     return (
         <Navbar expand="lg" className="bg-body-pink">
         <Container fluid>
-            <a href="/"><img src = '/job.png'></img></a>
+            <a href="/"><Image src = '/job.png' height='50px' width='50px' fluid/></a>
           <Navbar.Brand href="#">Job Listings</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -19,20 +20,13 @@ export const NavBar: React.FC = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="#action2">Link</Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+              <Nav.Link href="#action2">Find Jobs</Nav.Link>
+              <NavDropdown title="Explore" id="navbarScrollingDropdown">
+                <NavDropdown.Item href="#action3">Find Salaries</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
+                  Reviews
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#" disabled>
-                Link
-              </Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Form.Control
