@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from "react-bootstrap/Alert";
 import { Heading } from './Heading';
+import CustomButton from './CustomButton';
 
 export const FormApplication: React.FC = () => {
   return (
@@ -50,15 +50,21 @@ export const FormApplication: React.FC = () => {
             />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-            {/* {isSubmission ? 'Sending...' : 'Send'} */}
-            Apply
-        </Button>
-
-        <Button variant="light" type="submit">
-            {/* {isSubmission ? 'Sending...' : 'Send'} */}
-            Back
-        </Button>
+        <div className="d-flex">
+            <CustomButton 
+                variant="primary" 
+                size="lg" 
+                text="Submit" 
+                className="me-2" 
+              //  onClick={handleApplyClick}
+            />
+            <CustomButton 
+                variant="outline-danger" 
+                size="lg" 
+                text="Back" 
+              //  onClick={handleBackClick}
+            />
+        </div>
 
         {/* {isSubmitted && (
             <Alert variant="success" className="mt-3">

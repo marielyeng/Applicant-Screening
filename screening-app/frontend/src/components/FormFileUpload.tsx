@@ -44,19 +44,17 @@ export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <p>Drag and drop a file here or click to select a file</p>
+     
       <HiddenFileInput
         type="file"
         onChange={handleFileChange}
         id="fileUpload"
       />
       <UploadLabel htmlFor="fileUpload">Upload File</UploadLabel>
+      <p className='py-4'>Drag and drop a file here or click to select a file</p>
     </DropContainer>
   );
 };
-
-/////////////////////////////////////////
-// Styled Components
 
 interface DropContainerProps {
   dragActive: boolean;

@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import CustomButton from './CustomButton';
+import '.././styles/global.css';
 
 interface JobCardProps {
     id?: string;
@@ -20,6 +22,11 @@ export const JobCards: React.FC<JobCardProps> = ({id, title, description, detail
         </Card.Text>
         <Card.Link href="#">{link}</Card.Link>
       </Card.Body>
+      <div className="d-flex justify-content-start">
+          <a href="https://www.example.com" target="_blank" className="underlined btn btn-link me-2 p-2">
+            Apply
+          </a>
+      </div>
     </Card>
   );
 }

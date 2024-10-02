@@ -1,0 +1,5 @@
+.custom-button {
+    width: 40%; /* Set your desired width */
+    min-width: 100px; /* Minimum width to maintain usability */
+    max-width: 200px; /* Maximum width to prevent it from getting too large */
+}
