@@ -5,6 +5,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from config import Config
 from models import db, File
+from datetime import datetime
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -17,11 +18,14 @@ CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 db.init_app(app)
 
 # Ensure upload folder exists
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
+if not os.path.exists(app.config['uploads']):
+    os.makedirs(app.config['uploads'])
 
 # Allowed extensions (adjust as needed)
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf', 'docx'}
+MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB
+
+app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -41,7 +45,7 @@ def upload_file():
         filename = secure_filename(file.filename)
         # Create a unique filename to prevent overwriting
         unique_filename = f"{int(datetime.utcnow().timestamp())}_{filename}"
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
+        file_path = os.path.join(app.config['uploads'], unique_filename)
         file.save(file_path)
 
         # Get file size
