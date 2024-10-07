@@ -20,7 +20,7 @@ export const NavBar: React.FC = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="#action2">Find Jobs</Nav.Link>
+              <Nav.Link href="/jobs">Find Jobs</Nav.Link>
               <NavDropdown title="Explore" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Find Salaries</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
