@@ -7,12 +7,7 @@ export const Home: React.FC = () => {
     return (
         <Container>
             <Heading title = 'Job Listings' />
-            <JobCards 
-                title='Network Administrator'
-                description="Lorem Ipsum Dolor"
-                details='Manila, Philippines'
-                link='/'
-            />
+          
         </Container>
     )
 }
