@@ -52,7 +52,7 @@ def get_jobs():
                 'title': job.title,
                 'description': job.description,
                 'details': job.details,
-                'link': f'/jobs/{job.id}'  # Example link to individual job page
+                'link': f'/job/{job.id}'  # Example link to individual job page
             })
 
         # Return the list of jobs as JSON
@@ -74,3 +74,27 @@ def delete_job(job_id):
     db.session.commit()
 
     return jsonify({'message': 'Job deleted successfully'}), 200
+
+@job_bp.route('/jobs/<int:job_id>', methods=['GET'])
+def get_job_by_id(job_id):
+    try:
+        # Fetch the job by its ID
+        job = Job.query.get(job_id)
+
+        if not job:
+            return jsonify({'error': 'Job not found'}), 404
+
+        # Convert the job to a dictionary to return as JSON
+        job_details = {
+            'id': job.id,
+            'title': job.title,
+            'description': job.description,
+            'details': job.details
+        }
+
+        # Return the job details as JSON
+        return jsonify(job_details), 200
+
+    except Exception as e:
+        print(f"Error fetching job details: {e}")
+        return jsonify({'error': 'Error fetching job details'}), 500

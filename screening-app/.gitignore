@@ -50,3 +50,6 @@ next-env.d.ts
 /backend/__pycache__/
 /backend/*.pyc
 /server/.env
+/server/__pycache__
+/server/models/__pycache__
+/server/routes/__pycache__

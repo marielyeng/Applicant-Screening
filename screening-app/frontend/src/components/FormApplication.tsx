@@ -3,11 +3,32 @@ import Form from 'react-bootstrap/Form';
 import Alert from "react-bootstrap/Alert";
 import { Heading } from './Heading';
 import CustomButton from './CustomButton';
+import { useNavigate } from 'react-router-dom';
 
-export const FormApplication: React.FC = () => {
+interface ApplicationProps {
+  id: string;
+  jobTitle: string;
+}
+
+export const FormApplication: React.FC<ApplicationProps> = ({id, jobTitle}) => {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(`/jobs/${id}`)
+  }
   return (
     <Form className="shadow p-3 mb-5 bg-white rounded">
-      <Heading title='Software Engineer' />
+      <Heading title={jobTitle} />
+
+      <Form.Group className="mb-1" controlId="formFName">
+        <Form.Label>Job Requisition Id:</Form.Label>
+        <Form.Control 
+            type="text"
+            name="fname"
+            value={id}
+            disabled
+            />
+        </Form.Group>
 
         <Form.Group className="mb-1" controlId="formFName">
         <Form.Label>First Name:</Form.Label>
@@ -62,21 +83,9 @@ export const FormApplication: React.FC = () => {
                 variant="outline-danger" 
                 size="lg" 
                 text="Back" 
-              //  onClick={handleBackClick}
+                onClick={handleBackClick}
             />
         </div>
-
-        {/* {isSubmitted && (
-            <Alert variant="success" className="mt-3">
-            Your message has been sent successully!
-            </Alert>
-        )} */}
-
-        {/* {error && (
-            <Alert variant="danger" className="mt-3">
-            {error}
-            </Alert>
-        )} */}
     </Form>
   );
 }
