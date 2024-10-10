@@ -12,6 +12,7 @@ interface ApplicationProps {
 
 export const FormApplication: React.FC<ApplicationProps> = ({id, jobTitle}) => {
   const navigate = useNavigate();
+  console.log(`id: ${id}`);
 
   const handleBackClick = () => {
     navigate(`/jobs/${id}`)
