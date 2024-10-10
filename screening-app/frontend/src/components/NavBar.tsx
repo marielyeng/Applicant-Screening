@@ -23,9 +23,8 @@ export const NavBar: React.FC = () => {
               <Nav.Link href="/jobs">Find Jobs</Nav.Link>
               <NavDropdown title="Explore" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Find Salaries</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Reviews
-                </NavDropdown.Item>
+                <NavDropdown.Item href="#action4">Reviews</NavDropdown.Item>
+                <NavDropdown.Item href="#action5">Job Seeker - FAQ</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Form className="d-flex">

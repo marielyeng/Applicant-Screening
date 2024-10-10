@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Alert from "react-bootstrap/Alert";
 import { Heading } from './Heading';
 import CustomButton from './CustomButton';
 import { useNavigate } from 'react-router-dom';
