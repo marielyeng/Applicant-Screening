@@ -65,6 +65,7 @@ export const Home: React.FC = () => {
 }
 
 const Heading = styled.h1`
+     margin-top: 5%;
     font-weight: bold;
     font-size: 3.5em;
     color: #142d4c;
@@ -104,7 +105,7 @@ const CardBody = styled(Card.Body)`
     border-radius: 6px;
     position: relative;
     padding-bottom: 46px; 
-overflow: hidden; /* Ensure the background stays within bounds */
+    overflow: hidden; /* Ensure the background stays within bounds */
 
     &:hover {
         color: #e7eaf6;

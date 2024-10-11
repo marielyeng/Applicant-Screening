@@ -4,7 +4,7 @@ import { Router } from "@remix-run/router";
 import { Home } from "./pages/Home";
 import { JobApplication } from "./pages/JobApplication";
 import AdminPostJob from "./components/AdminJobPost";
-import JobListPage from "./pages/JobListPage";
+import { JobListPage } from "./pages/JobListPage";
 import { AdminLogin } from "./components/AdminLogin";
 import { JobDetailedPage } from "./pages/JobDetailedPage";
 
