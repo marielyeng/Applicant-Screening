@@ -104,7 +104,7 @@ const CardBody = styled(Card.Body)`
     border-radius: 6px;
     position: relative;
     padding-bottom: 46px; 
-overflow: hidden; /* Ensure the background stays within bounds */
+    overflow: hidden; /* Ensure the background stays within bounds */
 
     &:hover {
         color: #e7eaf6;

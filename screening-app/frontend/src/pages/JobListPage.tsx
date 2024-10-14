@@ -37,7 +37,7 @@ const JobListPage: React.FC = () => {
               title={job.title}
               description={job.description}
               details={job.details}
-              applyLink={`/jobs/${job.id}`}  // Link to a detailed page or external application
+              applyLink={`/jobs/${job.id}`}
             />
           </div>
         ))}
