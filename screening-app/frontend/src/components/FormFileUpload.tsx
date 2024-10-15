@@ -8,9 +8,10 @@ import Col from "react-bootstrap/Col";
 
 interface FileUploadProps {
   onFileUpload?: (file: File) => void;
+  onParsedData?: (data: any) => void; // New prop for parsed data
 }
 
-export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
+export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload, onParsedData }) => {
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadedFile, setUploadedFile] = useState<any>(null); // Store uploaded file details
@@ -77,6 +78,9 @@ export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
       setUploadStatus(response.data.message);
       setUploadedFile(response.data.file); // Store the uploaded file details in the state
       setSelectedFile(null);
+
+      // Pass parsed data to parent component
+      onParsedData && onParsedData(response.data.personal_info);
     } catch (error: any) {
       console.error("Error uploading file:", error);
       setUploadStatus("Error uploading file.");

@@ -7,94 +7,94 @@ import { useLocation } from 'react-router-dom';
 interface ApplicationProps {
   id: string;
   jobTitle?: string;
+  parsedData?: { first_name?: string; last_name?: string; email?: string; phone?: string; }; // Accept parsed data
 }
 
-export const FormApplication: React.FC<ApplicationProps> = ({id, jobTitle}) => {
+export const FormApplication: React.FC<ApplicationProps> = ({ id, jobTitle, parsedData }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const { title } = location.state || {};
 
   const handleBackClick = () => {
-    navigate(`/jobs/${id}`)
-  }
+    navigate(`/jobs/${id}`);
+  };
+
   return (
     <Form className="shadow p-3 mb-5 bg-white rounded">
-
-        <Form.Group className="mb-1" controlId="formAppId">
+      <Form.Group className="mb-1" controlId="formAppId">
         <Form.Label>Job Requisition Id:</Form.Label>
         <Form.Control 
-            type="text"
-            name="appId"
-            value={id}
-            disabled
-            />
-        </Form.Group>
+          type="text"
+          name="appId"
+          value={id}
+          disabled
+        />
+      </Form.Group>
 
-        <Form.Group className="mb-1" controlId="formJTitle">
+      <Form.Group className="mb-1" controlId="formJTitle">
         <Form.Label>Applying for:</Form.Label>
         <Form.Control 
-            type="text"
-            name="jtitle"
-            value={title}
-            disabled
-            />
-        </Form.Group>
+          type="text"
+          name="jtitle"
+          value={title}
+          disabled
+        />
+      </Form.Group>
 
-        <Form.Group className="mb-1" controlId="formFName">
+      <Form.Group className="mb-1" controlId="formFName">
         <Form.Label>First Name:</Form.Label>
         <Form.Control 
-            type="text"
-            name="fname"
-            // onChange={handleChange}
-            required
-            />
-        </Form.Group>
+          type="text"
+          name="fname"
+          defaultValue={parsedData?.first_name || ''}
+          required
+        />
+      </Form.Group>
 
-        <Form.Group className="mb-1" controlId="formLName">
+      <Form.Group className="mb-1" controlId="formLName">
         <Form.Label>Last Name:</Form.Label>
         <Form.Control 
-            type="text"
-            name="lname"
-            // onChange={handleChange}
-            required
-            />
-        </Form.Group>
+          type="text"
+          name="lname"
+          defaultValue={parsedData?.last_name || ''} // Set default value from parsed data
+          required
+        />
+      </Form.Group>
 
-        <Form.Group className="mb-1" controlId="formEmail">
+      <Form.Group className="mb-1" controlId="formEmail">
         <Form.Label>Email address:</Form.Label>
         <Form.Control 
-            type="email" 
-            name="email"
-            // onChange={handleChange}
-            required
-            />
-        </Form.Group>
+          type="email" 
+          name="email"
+          defaultValue={parsedData?.email || ''} // Set default value from parsed data
+          required
+        />
+      </Form.Group>
 
-        <Form.Group className="mb-3" controlId="phone">
+      <Form.Group className="mb-3" controlId="phone">
         <Form.Label>Phone number:</Form.Label>
         <Form.Control 
-            type="text" 
-            name="phone"
-            // value={formData.message}
-            // onChange={handleChange}
-            required
-            />
-        </Form.Group>
+          type="text" 
+          name="phone"
+          defaultValue={parsedData?.phone || ''} // Set default value from parsed data
+          required
+        />
+      </Form.Group>
 
-        <div className="d-flex">
-            <CustomButton 
-                variant="primary" 
-                text="Submit" 
-                className="me-2" 
-              //  onClick={handleApplyClick}
-            />
-            <CustomButton 
-                variant="outline-danger" 
-                text="Back" 
-                onClick={handleBackClick}
-            />
-        </div>
+      <div className="d-flex">
+        <CustomButton 
+          variant="primary" 
+          text="Submit" 
+          className="me-2" 
+          // onClick={handleApplyClick}
+        />
+        <CustomButton 
+          variant="outline-danger" 
+          text="Back" 
+          onClick={handleBackClick}
+        />
+      </div>
     </Form>
   );
-}
+};
