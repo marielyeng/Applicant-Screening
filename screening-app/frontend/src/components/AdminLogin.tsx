@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ButtonProps } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
@@ -31,34 +32,39 @@ export const AdminLogin: React.FC = () => {
 
   return (
     <LContainer>
-      <Img src='/profile.png' />
-      <Form onSubmit={handleSubmit}>
-        {error && <div className="alert alert-danger">{error}</div>}
-        <Form.Group className="mb-3" controlId="formBasicUsername">
-          <Form.Control 
-            type="text" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder='Username'
-            required 
-          />
-        </Form.Group>
+      <LeftColumn>
+        <Img src='/profile.png' alt='Profile' />
+        <h1>Welcome</h1>
+      </LeftColumn>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            placeholder="Password" 
-            required 
-            className='w-1000'
-          />
-        </Form.Group>
+      <RightColumn>
+        <Form onSubmit={handleSubmit}>
+          {error && <div className="alert alert-danger">{error}</div>}
+          <Form.Group className="mb-3" controlId="formBasicUsername">
+            <Inputs
+              type="text" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder='Username'
+              required 
+            />
+          </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Login
-        </Button>
-      </Form>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Inputs 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="Password" 
+              required
+            />
+          </Form.Group>
+
+          <StyledButton variant="primary" type="submit">
+            Login
+          </StyledButton>
+        </Form>
+      </RightColumn>
     </LContainer>
   );
 };
@@ -71,15 +77,42 @@ const LContainer = styled(Container)`
   width: 40%;
   box-shadow: 2px 4px 8px #9fd3c7;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  flex-direction: row;
+`;
+
+const LeftColumn = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 50vh; /* Full height of viewport */
+  width: 40%;
+  text-align: center;
+`;
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  width: 50%;
 `;
 
 const Img = styled(Image)`
-  width: 15%;
-  height: 15%;
-  display: block;
-  margin-bottom: 24px; /* Add some space between image and form */
+  width: 40%;
+  height: auto;
+  margin-bottom: 24px;
 `;
+
+const Inputs = styled(Form.Control)`
+  width: 100%;
+  max-width: 300px;
+`;
+
+const StyledButton = styled(Button)<ButtonProps>`
+  width: 100%;
+  max-width: 300px;
+`;
+

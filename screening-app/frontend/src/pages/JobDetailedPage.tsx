@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const JobDetailedPage: React.FC = () => {
-  const { jobId } = useParams();  // Get jobId from the URL
+  const { jobId } = useParams();
   const [jobDetails, setJobDetails] = useState<any>(null);  // State for job details
 
   useEffect(() => {
