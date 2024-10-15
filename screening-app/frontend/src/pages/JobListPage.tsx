@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { JobCards } from '../components/JobCards';
-
+import styled from 'styled-components';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 interface Jobs {
     id: string;
     title: string;
@@ -10,7 +12,7 @@ interface Jobs {
     link: string;
 }
 
-const JobListPage: React.FC = () => {
+export const JobListPage: React.FC = () => {
   const [jobs, setJobs] = useState<Jobs[]>([]);
 
   useEffect(() => {
@@ -27,11 +29,21 @@ const JobListPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mt-5">
-      <h2>Available Jobs</h2>
-      <div className="row">
+    <Container>
+      <div>
+      <Form className="d-flex w-100">
+              <Form.Control
+                type="search"
+                placeholder="Search Job"
+                className="me-2 flex-grow"
+                aria-label="Search"
+                style={{ width: '92%', justifySelf: 'center' }}
+              />
+              <Button variant="outline-primary">Search</Button>
+        </Form>
+
         {jobs.map(job => (
-          <div key={job.id} className="col-md-4">
+          <CardWrapper key={job.id} className="col-md-4">
             <JobCards 
               id={job.id}
               title={job.title}
@@ -39,11 +51,24 @@ const JobListPage: React.FC = () => {
               details={job.details}
               applyLink={`/jobs/${job.id}`}
             />
-          </div>
+          </CardWrapper>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 
-export default JobListPage;
+const Container = styled.div`
+  padding: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+`;
+
+const CardWrapper = styled.div`
+ margin: 5px;
+ padding: 12px;
+ width: 100%;
+`;

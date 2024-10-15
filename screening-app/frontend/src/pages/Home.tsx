@@ -65,6 +65,7 @@ export const Home: React.FC = () => {
 }
 
 const Heading = styled.h1`
+     margin-top: 5%;
     font-weight: bold;
     font-size: 3.5em;
     color: #142d4c;
