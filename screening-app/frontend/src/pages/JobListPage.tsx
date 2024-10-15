@@ -4,16 +4,19 @@ import { JobCards } from '../components/JobCards';
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
 interface Jobs {
-    id: string;
-    title: string;
-    description: string;
-    details: string;
-    link: string;
+  id: string;
+  title: string;
+  description: string;
+  details: string;
+  link: string;
 }
 
 export const JobListPage: React.FC = () => {
   const [jobs, setJobs] = useState<Jobs[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>(''); // state to store search input
+  const [filteredJobs, setFilteredJobs] = useState<Jobs[] | null>(null); // null means no filtering
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -28,23 +31,45 @@ export const JobListPage: React.FC = () => {
     fetchJobs();
   }, []);
 
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Handle search button click to filter jobs
+  const handleSearch = () => {
+    if (searchQuery.trim() === '') {
+      setFilteredJobs(null); // Show all jobs if search query is empty
+    } else {
+      const filtered = jobs.filter(job => 
+        job.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredJobs(filtered);
+    }
+  };
+
+  const jobsToDisplay = filteredJobs === null ? jobs : filteredJobs;
+
   return (
     <Container>
       <div>
-        <Form className="d-flex w-100">
-                <Form.Control
-                  type="search"
-                  placeholder="Search Job"
-                  className="me-2 flex-grow"
-                  aria-label="Search"
-                  style={{ width: '100%' }}
-                />
-                <Button variant="outline-primary">Search</Button>
-          </Form>
-        </div>
+        <Form className="d-flex w-100" onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
+          <Form.Control
+            type="search"
+            placeholder="Search Job"
+            className="me-2 flex-grow"
+            aria-label="Search"
+            style={{ width: '100%' }}
+            value={searchQuery} // controlled input
+            onChange={handleSearchChange} // update search query state
+          />
+          <Button variant="outline-primary" onClick={handleSearch}>Search</Button>
+        </Form>
+      </div>
 
-        <div>
-          {jobs.map(job => (
+      <div>
+        {jobsToDisplay.length > 0 ? (
+          jobsToDisplay.map(job => (
             <CardWrapper key={job.id} className="col-md-4">
               <JobCards 
                 id={job.id}
@@ -54,8 +79,11 @@ export const JobListPage: React.FC = () => {
                 applyLink={`/jobs/${job.id}`}
               />
             </CardWrapper>
-          ))}
-        </div>
+          ))
+        ) : (
+          <p>No jobs found.</p>
+        )}
+      </div>
     </Container>
   );
 };
@@ -70,7 +98,7 @@ const Container = styled.div`
 `;
 
 const CardWrapper = styled.div`
- margin: 5px;
- padding: 12px;
- width: 100%;
+  margin: 5px;
+  padding: 12px;
+  width: 100%;
 `;
