@@ -6,6 +6,7 @@ import { FormApplication } from "../components/FormApplication";
 import { FormFileUpload } from "../components/FormFileUpload";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
 
 export const JobApplication: React.FC = () => {
   const [jobTitle, setJobTitle] = useState("");
@@ -25,11 +26,16 @@ export const JobApplication: React.FC = () => {
   }, [jobId])
 
     return (
-        <Container>
-      <Row>
-        <Col><FormApplication id={jobId ?? ''} jobTitle={jobTitle ?? ''} /></Col>
-        <Col><FormFileUpload /></Col>
-      </Row>
-    </Container>
+      <FormWrapper>
+        <Row>
+          <Col><FormApplication id={jobId ?? ''} jobTitle={jobTitle ?? ''} /></Col>
+          <Col><FormFileUpload /></Col>
+        </Row>
+    </FormWrapper>
     )
 }
+
+const FormWrapper = styled(Container)`
+  padding: 24px;
+  margin-top: 5%;
+`;

@@ -1,31 +1,42 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { Heading } from './Heading';
 import CustomButton from './CustomButton';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 interface ApplicationProps {
   id: string;
-  jobTitle: string;
+  jobTitle?: string;
 }
 
 export const FormApplication: React.FC<ApplicationProps> = ({id, jobTitle}) => {
+  const location = useLocation();
   const navigate = useNavigate();
-  console.log(`id: ${id}`);
+
+  const { title } = location.state || {};
 
   const handleBackClick = () => {
     navigate(`/jobs/${id}`)
   }
   return (
     <Form className="shadow p-3 mb-5 bg-white rounded">
-      <Heading title={jobTitle} />
 
-      <Form.Group className="mb-1" controlId="formFName">
+        <Form.Group className="mb-1" controlId="formAppId">
         <Form.Label>Job Requisition Id:</Form.Label>
         <Form.Control 
             type="text"
-            name="fname"
+            name="appId"
             value={id}
+            disabled
+            />
+        </Form.Group>
+
+        <Form.Group className="mb-1" controlId="formJTitle">
+        <Form.Label>Applying for:</Form.Label>
+        <Form.Control 
+            type="text"
+            name="jtitle"
+            value={title}
             disabled
             />
         </Form.Group>
@@ -74,14 +85,12 @@ export const FormApplication: React.FC<ApplicationProps> = ({id, jobTitle}) => {
         <div className="d-flex">
             <CustomButton 
                 variant="primary" 
-                size="lg" 
                 text="Submit" 
                 className="me-2" 
               //  onClick={handleApplyClick}
             />
             <CustomButton 
                 variant="outline-danger" 
-                size="lg" 
                 text="Back" 
                 onClick={handleBackClick}
             />

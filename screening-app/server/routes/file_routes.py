@@ -17,7 +17,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Route to upload a file
-@file_bp.route('/upload', methods=['POST'])
+@file_bp.route('/uploads', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
         return jsonify({'message': 'No file part in the request.'}), 400
@@ -50,3 +50,22 @@ def upload_file():
         }), 201
 
     return jsonify({'message': 'Allowed file types are png, jpg, jpeg, gif, pdf, docx.'}), 400
+
+# Route to delete a file
+@file_bp.route('/uploads/<int:file_id>', methods=['DELETE'])
+def delete_file(file_id):
+    file = File.query.get(file_id)
+
+    if not file:
+        return jsonify({'message': 'File not found.'}), 404
+
+    # Delete the file from the filesystem
+    if os.path.exists(file.file_path):
+        os.remove(file.file_path)
+
+    # Delete the file record from the database
+    db.session.delete(file)
+    db.session.commit()
+
+    return jsonify({'message': 'File successfully deleted.'}), 200
+

@@ -14,7 +14,7 @@ export const NavBar: React.FC = () => {
           <Logo>
               <a href="/"><JobLogo src = '/job.png' height='50px' width='50px'/></a>
             </Logo> 
-          <Brand href="/">Job Listings</Brand>
+          <Brand href="/">Tech/Job Hunt</Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav

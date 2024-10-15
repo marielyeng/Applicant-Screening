@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import styled from 'styled-components';
 
 export const JobDetailedPage: React.FC = () => {
   const { jobId } = useParams();
+  const navigate = useNavigate();
   const [jobDetails, setJobDetails] = useState<any>(null);  // State for job details
 
   useEffect(() => {
@@ -24,12 +28,26 @@ export const JobDetailedPage: React.FC = () => {
     return <div>Loading...</div>;
   }
 
+  const handleApplyClick = () => {
+    navigate(`/apply/${jobId}`, { state: { title: jobDetails.title } });
+  };
+
   return (
-    <div className="container mt-5">
+    <JobWrapper>
       <h2>{jobDetails.title}</h2>
       <p>{jobDetails.description}</p>
       <p>{jobDetails.details}</p>
-      <a href={`/apply/${jobId}`} className="btn btn-primary">Apply</a>
-    </div>
+      <Button className="btn btn-primary" onClick={handleApplyClick}>
+            Apply
+      </Button>
+    </JobWrapper>
   );
 };
+
+const JobWrapper = styled(Container)`
+  margin-top: 7%;
+  padding: 24px;
+  box-shadow: 2px 4px 8px #9fd3c7;
+  border-bottom: 4px solid #142d4c;
+  border-radius: 6px;
+`;

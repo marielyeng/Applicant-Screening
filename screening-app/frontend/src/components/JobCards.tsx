@@ -19,7 +19,7 @@ export const JobCards: React.FC<JobCardProps> = ({ id, title, description, detai
   };
 
   const handleApplyClick = () => {
-    navigate(`/apply/${id}`);
+    navigate(`/apply/${id}`, { state: { title } });
   };
 
   return (
