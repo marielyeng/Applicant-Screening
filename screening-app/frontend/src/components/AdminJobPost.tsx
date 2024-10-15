@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AdminLogout from './AdminLogout';
+import Container from 'react-bootstrap/Container';
+import styled from 'styled-components';
 
 const AdminPostJob: React.FC = () => {
   const [jobTitle, setJobTitle] = useState('');
@@ -45,7 +47,7 @@ const AdminPostJob: React.FC = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <Wrapper>
       <h2>Post a New Job</h2>
       <div className="form-group my-3">
         <input 
@@ -74,11 +76,15 @@ const AdminPostJob: React.FC = () => {
       </div>
       <button className="btn btn-success" onClick={handleSubmit}>Post Job</button>
 
-        <div className="mt-3">
+        <span className="p-3">
           <AdminLogout />
-        </div>
-    </div>
+        </span>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled(Container)`
+  margin-top: 7%;
+`;
 
 export default AdminPostJob;

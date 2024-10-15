@@ -13,6 +13,7 @@ interface FileUploadProps {
 export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<any>(null); // Store uploaded file details
   const [uploadStatus, setUploadStatus] = useState<string>("");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +46,19 @@ export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
     }
   };
 
+  const handleRemoveFile = async () => {
+    if (!uploadedFile) return;
+
+    try {
+      const response = await axios.delete(`http://localhost:5000/api/uploads/${uploadedFile.id}`);
+      setUploadStatus("File removed successfully.");
+      setUploadedFile(null); // Clear uploaded file from the state
+    } catch (error) {
+      console.error("Error removing file:", error);
+      setUploadStatus("Error removing file.");
+    }
+  };
+
   const handleUpload = async () => {
     if (!selectedFile) {
       setUploadStatus("No file selected.");
@@ -55,12 +69,13 @@ export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await axios.post("http://localhost:5000/uploads", formData, {
+      const response = await axios.post("http://localhost:5000/api/uploads", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       setUploadStatus(response.data.message);
+      setUploadedFile(response.data.file); // Store the uploaded file details in the state
       setSelectedFile(null);
     } catch (error: any) {
       console.error("Error uploading file:", error);
@@ -84,12 +99,25 @@ export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
             id="fileUpload"
           />
           <UploadLabel htmlFor="fileUpload">Choose File</UploadLabel>
+
+          {selectedFile && (
+            <RemoveLabel onClick={() => setSelectedFile(null)}>Remove Selected File</RemoveLabel>
+          )}
         </DropContainer>
+
         {selectedFile && (
           <div style={{ marginTop: "10px" }}>
             <strong>Selected File:</strong> {selectedFile.name}
           </div>
         )}
+
+        {uploadedFile && (
+          <div style={{ marginTop: "10px" }}>
+            <strong>Uploaded File:</strong> {uploadedFile.file_name}
+            <RemoveLabel onClick={handleRemoveFile}>Remove Uploaded File</RemoveLabel>
+          </div>
+        )}
+
         <Button
           variant="primary"
           onClick={handleUpload}
@@ -98,6 +126,7 @@ export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
         >
           Upload File
         </Button>
+
         {uploadStatus && <p style={{ marginTop: "10px" }}>{uploadStatus}</p>}
       </Col>
     </Row>
@@ -121,14 +150,25 @@ const HiddenFileInput = styled(Form.Control)`
 `;
 
 const UploadLabel = styled.label`
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
+  padding: 5px 15px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: underline;
   
   &:hover {
-    background-color: #0056b3;
+    color: #007bff;
+  }
+`;
+
+const RemoveLabel = styled.span`
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: underline;
+  
+  &:hover {
+    color: #b30000;
   }
 `;

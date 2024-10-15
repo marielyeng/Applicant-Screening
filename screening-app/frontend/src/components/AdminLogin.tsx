@@ -70,7 +70,7 @@ export const AdminLogin: React.FC = () => {
 };
 
 const LContainer = styled(Container)`
-  margin-top: 5%;
+  margin-top: 10%;
   background-color: #e7eaf6;
   padding: 24px;
   border-radius: 48px;

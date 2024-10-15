@@ -31,40 +31,42 @@ export const JobListPage: React.FC = () => {
   return (
     <Container>
       <div>
-      <Form className="d-flex w-100">
-              <Form.Control
-                type="search"
-                placeholder="Search Job"
-                className="me-2 flex-grow"
-                aria-label="Search"
-                style={{ width: '92%', justifySelf: 'center' }}
-              />
-              <Button variant="outline-primary">Search</Button>
-        </Form>
+        <Form className="d-flex w-100">
+                <Form.Control
+                  type="search"
+                  placeholder="Search Job"
+                  className="me-2 flex-grow"
+                  aria-label="Search"
+                  style={{ width: '100%' }}
+                />
+                <Button variant="outline-primary">Search</Button>
+          </Form>
+        </div>
 
-        {jobs.map(job => (
-          <CardWrapper key={job.id} className="col-md-4">
-            <JobCards 
-              id={job.id}
-              title={job.title}
-              description={job.description}
-              details={job.details}
-              applyLink={`/jobs/${job.id}`}
-            />
-          </CardWrapper>
-        ))}
-      </div>
+        <div>
+          {jobs.map(job => (
+            <CardWrapper key={job.id} className="col-md-4">
+              <JobCards 
+                id={job.id}
+                title={job.title}
+                description={job.description}
+                details={job.details}
+                applyLink={`/jobs/${job.id}`}
+              />
+            </CardWrapper>
+          ))}
+        </div>
     </Container>
   );
 };
 
 const Container = styled.div`
   padding: 24px;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
+  justify-content: center;
+  margin-top: 5%;
 `;
 
 const CardWrapper = styled.div`

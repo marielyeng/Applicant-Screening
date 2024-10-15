@@ -8,6 +8,7 @@ interface CustomButtonProps {
     text: string; // Button text
     className?: string; // Additional classes for styling
     onClick?: () => void; // Optional click handler
+    disabled?: boolean;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -16,6 +17,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     text,
     className = '',
     onClick,
+    disabled
 }) => {
     return (
         <Button 
