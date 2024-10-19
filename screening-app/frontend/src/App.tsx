@@ -3,13 +3,16 @@ import { ThemeProvider } from "react-bootstrap";
 import { AppRoute } from "./AppRoute";
 import { NavBar } from "./components/NavBar";
 import "./App.css";
+import { AuthProvider } from "./components/AuthContext";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider>
-            <NavBar />
-           <AppRoute />
-        </ThemeProvider>
+        <AuthProvider>
+            <ThemeProvider>
+                <NavBar />
+                <AppRoute />
+            </ThemeProvider>
+        </AuthProvider>
     )
 }
 

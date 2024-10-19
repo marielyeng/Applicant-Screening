@@ -84,7 +84,12 @@ const AdminPostJob: React.FC = () => {
 };
 
 const Wrapper = styled(Container)`
-  margin-top: 7%;
+  margin-top: 4%;
+  max-width: 70%;
+  padding: 24px;
+  box-shadow: 2px 4px 8px #9fd3c7;
+  border-bottom: 4px solid #142d4c;
+  border-radius: 6px;
 `;
 
 export default AdminPostJob;

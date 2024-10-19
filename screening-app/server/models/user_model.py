@@ -7,6 +7,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    is_admin = db.Column(db.Boolean, default=False)
 
     def set_password(self, password):
         """Hash and set the user's password."""

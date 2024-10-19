@@ -60,8 +60,8 @@ export const JobListPage: React.FC = () => {
             className="me-2 flex-grow"
             aria-label="Search"
             style={{ width: '100%' }}
-            value={searchQuery} // controlled input
-            onChange={handleSearchChange} // update search query state
+            value={searchQuery}
+            onChange={handleSearchChange}
           />
           <Button variant="outline-primary" onClick={handleSearch}>Search</Button>
         </Form>
@@ -94,7 +94,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 2%;
 `;
 
 const CardWrapper = styled.div`

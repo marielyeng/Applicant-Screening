@@ -1,8 +1,12 @@
 import React from "react";
-import { AdminLogin } from "../components/AdminLogin";
+import AdminPostJob from "../components/AdminJobPost";
+import { AdminNavBar } from "../components/AdminNavBar";
 
 export const AdminPage: React.FC = () => {
     return (
-        <AdminLogin />
+     <>
+        <AdminNavBar />
+        <AdminPostJob />
+     </>
     )
 }

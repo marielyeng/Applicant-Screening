@@ -59,7 +59,7 @@ export const JobDetailedPage: React.FC = () => {
 };
 
 const JobWrapper = styled(Container)`
-  margin-top: 7%;
+  margin-top: 2%;
   padding: 24px;
   box-shadow: 2px 4px 8px #9fd3c7;
   border-bottom: 4px solid #142d4c;

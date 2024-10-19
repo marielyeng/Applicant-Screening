@@ -50,6 +50,9 @@ export const Navigation = styled(Navbar)`
   display: flex;
   flex-direction: row;
   width: 100%;
+   position: sticky;
+  top: 0;
+  z-index: 1000;
 
   @media (max-width: 446px) {
     flex-wrap: wrap;

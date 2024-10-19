@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 
 interface FileUploadProps {
   onFileUpload?: (file: File) => void;
-  onParsedData?: (data: any) => void; // New prop for parsed data
+  onParsedData?: (data: any) => void;
 }
 
 export const FormFileUpload: React.FC<FileUploadProps> = ({ onFileUpload, onParsedData }) => {

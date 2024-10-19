@@ -2,29 +2,24 @@ import React, { useState } from 'react';
 import { ButtonProps } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import styled from 'styled-components';
 import Image from 'react-bootstrap/Image';
+import { useAuth } from './AuthContext';
 
 export const AdminLogin: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login } = useAuth();  // Access the login function from AuthContext
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', {
-        username,
-        password
-      });
-
-      localStorage.setItem('jwtToken', response.data.access_token);
-
-      navigate('/admin-post-job');
+      await login(username, password);
+      navigate('/admin-page');
     } catch (error) {
       setError('Login failed. Please check your credentials.');
     }
@@ -63,6 +58,8 @@ export const AdminLogin: React.FC = () => {
           <StyledButton variant="primary" type="submit">
             Login
           </StyledButton>
+          <br />
+          <a href="/">Forgot password</a>
         </Form>
       </RightColumn>
     </LContainer>
@@ -70,7 +67,7 @@ export const AdminLogin: React.FC = () => {
 };
 
 const LContainer = styled(Container)`
-  margin-top: 10%;
+  margin-top: 5%;
   background-color: #e7eaf6;
   padding: 24px;
   border-radius: 48px;
@@ -114,5 +111,6 @@ const Inputs = styled(Form.Control)`
 const StyledButton = styled(Button)<ButtonProps>`
   width: 100%;
   max-width: 300px;
+  margin-bottom: 20px;
 `;
 

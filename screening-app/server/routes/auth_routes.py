@@ -64,3 +64,14 @@ def protected():
     user = User.query.get(current_user_id)
     return jsonify({'message': f'Hello, {user.username}! This is a protected route.'}), 200
 
+@auth_bp.route('/check-admin', methods=['GET'])
+@jwt_required()
+def check_admin():
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+    
+    if user and user.is_admin:
+        return jsonify(isAdmin=True), 200
+    else:
+        return jsonify(isAdmin=False), 200
+

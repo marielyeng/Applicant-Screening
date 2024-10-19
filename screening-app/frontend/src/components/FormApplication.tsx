@@ -57,7 +57,7 @@ export const FormApplication: React.FC<ApplicationProps> = ({ id, jobTitle, pars
         <Form.Control 
           type="text"
           name="lname"
-          defaultValue={parsedData?.last_name || ''} // Set default value from parsed data
+          defaultValue={parsedData?.last_name || ''}
           required
         />
       </Form.Group>
@@ -67,7 +67,7 @@ export const FormApplication: React.FC<ApplicationProps> = ({ id, jobTitle, pars
         <Form.Control 
           type="email" 
           name="email"
-          defaultValue={parsedData?.email || ''} // Set default value from parsed data
+          defaultValue={parsedData?.email || ''}
           required
         />
       </Form.Group>
@@ -77,7 +77,7 @@ export const FormApplication: React.FC<ApplicationProps> = ({ id, jobTitle, pars
         <Form.Control 
           type="text" 
           name="phone"
-          defaultValue={parsedData?.phone || ''} // Set default value from parsed data
+          defaultValue={parsedData?.phone || ''}
           required
         />
       </Form.Group>
