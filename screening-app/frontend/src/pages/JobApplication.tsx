@@ -43,7 +43,7 @@ export const JobApplication: React.FC = () => {
     </FormWrapper>
   );
 }
-
+console.log("Hello")
 const FormWrapper = styled(Container)`
   padding: 24px;
   margin-top: 2%;
