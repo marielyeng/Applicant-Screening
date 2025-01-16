@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useAuth } from './AuthContext';  // Use the authentication context for admin status
+import { useAuth } from './AuthContext';
 
 interface JobCardProps {
   id: string;
